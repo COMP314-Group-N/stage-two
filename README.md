@@ -1,1 +1,1 @@
-# The repo will contain all stage-two project files 💻 🎵 
+# This repo will contain all stage-two project files 💻 🎵 
