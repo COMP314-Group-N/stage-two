@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import *
-import pandas as pd
+import csv
 
 #creates window
 window = tk.Tk()
@@ -35,8 +35,14 @@ login_epassword = ttk.Entry(login, textvariable=StringVar, font=('Ubuntu', 11), 
 
 #button
 def check_login():
-  file = pd.read_csv('login.csv', usercols=['Username','Password'])
-  login_eusername.insert(0, file)
+  with open('login.csv', 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    exists = false
+    for row in reader:
+      if (login_eusername.get() == row['USERNAME']):
+        print('hello there')
+        exists = true
+        break
 
 login_button = ttk.Button(login, text='Log in', style='login_button.TButton', command=check_login, cursor='hand2')
 
