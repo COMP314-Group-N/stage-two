@@ -1,8 +1,9 @@
 #GUI imports
 import tkinter as tk
-import tkinter.ttk as ttk
 from tkinter import *
 from tkinter import filedialog as fd
+from ttkbootstrap import Style
+from tkinter import ttk
 
 #functional imports
 import csv
@@ -11,8 +12,9 @@ import csv
 ##################################################
 #creates window
 window = tk.Tk()
-style = ttk.Style()
+style = Style(theme='superhero')
 window.title('Music Identification')
+window.resizable(False, False)
 
 #center window
 #**************************************************
@@ -26,8 +28,8 @@ window.geometry('%dx%d+%d+%d' % (750, 400, x, y))
 #**************************************************
 
 #creates frames for each screen
-start_frame = Frame(window)
-main_frame = Frame(window)
+start_frame = ttk.Frame(window)
+main_frame = ttk.Frame(window)
 
 #**************************************************
 main_frame.pack(fill=BOTH, expand=True)
@@ -35,11 +37,13 @@ main_frame.pack(fill=BOTH, expand=True)
 
 #creates tab interface
 tabs = ttk.Notebook(start_frame)
+style.configure('TNotebook', padding=5)
+style.configure('TNotebook.Tab', font=('Ubuntu', 10))
 tabs.pack(fill=BOTH, expand=True)
 
 #create a tab for each screen
-login = Frame(tabs, bg='#DDE6ED')
-signup = Frame(tabs, bg='#DDE6ED')
+login = Frame(tabs)
+signup = Frame(tabs)
 
 #add screen tabs to tab interface
 tabs.add(login, text='Login')
@@ -49,14 +53,14 @@ tabs.add(signup, text='Sign up')
 #LOGIN
 ##################################################
 #labels
-login_lheader = Label(login, text='LOGIN', font=('Ubuntu', 20), bg='#DDE6ED')
-login_lusername = Label(login, text='Username', font=('Ubuntu', 11), bg='#DDE6ED')
-login_lpassword = Label(login, text='Password', font=('Ubuntu', 11), bg='#DDE6ED')
-login_error = Label(login, text='', font=('Ubuntu', 9), bg='#DDE6ED', fg='red')
+login_lheader = ttk.Label(login, text='LOGIN', font=('Ubuntu', 20))
+login_lusername = ttk.Label(login, text='Username', font=('Ubuntu', 11))
+login_lpassword = ttk.Label(login, text='Password', font=('Ubuntu', 11))
+login_error = ttk.Label(login, text='', font=('Ubuntu', 9), style='danger.TLabel', justify=CENTER)
 
 #entries
-login_eusername = ttk.Entry(login, textvariable=StringVar, font=('Ubuntu', 11), width=29, justify=CENTER)
-login_epassword = ttk.Entry(login, textvariable=StringVar, font=('Ubuntu', 11), width=25, justify=CENTER, show='*')
+login_eusername = ttk.Entry(login, textvariable=StringVar, font=('Ubuntu', 11), width=29, justify=CENTER, style='primary.TEntry')
+login_epassword = ttk.Entry(login, textvariable=StringVar, font=('Ubuntu', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
 
 #button
 def check_login():
@@ -82,9 +86,9 @@ def check_login():
     if exists == False:
       login_error.config(text = 'User does not exist.\nRe-enter details or try signing up.')
 
-login_button = ttk.Button(login, text='Log in', style='button.TButton', command=check_login, cursor='hand2')
+login_button = ttk.Button(login, text='Log in', style='primary.Outline.TButton', command=check_login, cursor='hand2')
 
-style.configure('button.TButton', font=('Ubuntu', 11), justify=CENTER)
+style.configure('primary.Outline.TButton', font=('Ubuntu', 11), justify=CENTER)
 
 #checkbox
 login_checked = tk.IntVar()
@@ -95,30 +99,30 @@ def login_showpassword():
   else:
     login_epassword.config(show='*')
 
-login_checkbox = Checkbutton(login, command=login_showpassword, variable=login_checked, onvalue=1, offvalue=0, cursor='pencil', bg='#DDE6ED')
+login_checkbox = ttk.Checkbutton(login, command=login_showpassword, variable=login_checked, onvalue=1, offvalue=0, cursor='hand2', style='primary.Squaretoggle.Toolbutton')
 
 #add elements to login
-login_lheader.place(relx=0.5,y=45,anchor=CENTER)
-login_lusername.place(x=30,y=70)
+login_lheader.place(relx=0.5,y=35,anchor=CENTER)
+login_lusername.place(x=30,y=65)
 login_eusername.place(relx=0.5,y=106,anchor=CENTER)
-login_lpassword.place(x=30,y=130)
-login_epassword.place(x=30,y=155)
-login_button.place(relx=0.5,y=215,anchor=CENTER)
-login_checkbox.place(x=240, y=153)
-login_error.place(relx=0.5,y=250,anchor=CENTER)
+login_lpassword.place(x=30,y=135)
+login_epassword.place(relx=0.45,y=176, anchor=CENTER)
+login_button.place(relx=0.5,y=230,anchor=CENTER)
+login_checkbox.place(relx=0.875,y=176,anchor=CENTER)
+login_error.place(relx=0.5,y=270,anchor=CENTER)
 ##################################################
 
 #SIGNUP
 ##################################################
 #labels
-signup_lheader = Label(signup, text='SIGN UP', font=('Ubuntu', 20), bg='#DDE6ED')
-signup_lusername = Label(signup, text='Username', font=('Ubuntu', 11), bg='#DDE6ED')
-signup_lpassword = Label(signup, text='Password', font=('Ubuntu', 11), bg='#DDE6ED')
-signup_error = Label(signup, text='', font=('Ubuntu', 9), bg='#DDE6ED', fg='red')
+signup_lheader = ttk.Label(signup, text='SIGN UP', font=('Ubuntu', 20))
+signup_lusername = ttk.Label(signup, text='Username', font=('Ubuntu', 11))
+signup_lpassword = ttk.Label(signup, text='Password', font=('Ubuntu', 11))
+signup_error = ttk.Label(signup, text='', font=('Ubuntu', 9), style='danger.TLabel')
 
 #entries
-signup_eusername = ttk.Entry(signup, textvariable=StringVar, font=('Ubuntu', 11), width=29, justify=CENTER)
-signup_epassword = ttk.Entry(signup, textvariable=StringVar, font=('Ubuntu', 11), width=25, justify=CENTER, show='*')
+signup_eusername = ttk.Entry(signup, textvariable=StringVar, font=('Ubuntu', 11), width=29, justify=CENTER, style='primary.TEntry')
+signup_epassword = ttk.Entry(signup, textvariable=StringVar, font=('Ubuntu', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
 
 
 def sign_up():
@@ -158,7 +162,7 @@ def check_user():
     else:
       signup_error.config(text='Please enter a username')
 
-signup_button = ttk.Button(signup, text='Create account', style='button.TButton', command=check_user, cursor='hand2')
+signup_button = ttk.Button(signup, text='Create account', style='primary.Outline.TButton', command=check_user, cursor='hand2')
 
 #checkbox
 signup_checked = tk.IntVar()
@@ -169,33 +173,42 @@ def signup_showpassword():
   else:
     signup_epassword.config(show='*')
 
-signup_checkbox = Checkbutton(signup, command=signup_showpassword, variable=signup_checked, onvalue=1, offvalue=0, cursor='pencil', bg='#DDE6ED')
+signup_checkbox = ttk.Checkbutton(signup, command=signup_showpassword, variable=signup_checked, onvalue=1, offvalue=0, cursor='hand2', style='primary.Squaretoggle.Toolbutton')
 
 #add elements to signup
-signup_lheader.place(relx=0.5, y=45, anchor=CENTER)
-signup_lusername.place(x=30, y=70)
-signup_eusername.place(relx=0.5, y=106, anchor=CENTER)
-signup_lpassword.place(x=30, y=130)
-signup_epassword.place(x=30, y=155)
-signup_button.place(relx=0.5, y=215, anchor=CENTER)
-signup_checkbox.place(x=240, y=153)
-signup_error.place(relx=0.5, y=250, anchor=CENTER)
+signup_lheader.place(relx=0.5,y=35,anchor=CENTER)
+signup_lusername.place(x=30,y=65)
+signup_eusername.place(relx=0.5,y=106,anchor=CENTER)
+signup_lpassword.place(x=30,y=135)
+signup_epassword.place(relx=0.45,y=176, anchor=CENTER)
+signup_button.place(relx=0.5,y=230,anchor=CENTER)
+signup_checkbox.place(relx=0.875,y=176,anchor=CENTER)
+signup_error.place(relx=0.5,y=270,anchor=CENTER)
 ##################################################
 
 #MAIN
 ##################################################
-main = Frame(main_frame,  bg='#DDE6ED')
-main.pack(fill=BOTH, expand=TRUE)
+main = Frame(main_frame,highlightbackground='#526170',highlightthickness=1)
+main.pack(padx=5,pady=5,fill=BOTH,expand=True)
 
 #buttons
+def logout():
+  x = (screen_width/2) - (310/2)
+  y = (screen_height/2) - (340/2)
+  window.geometry('%dx%d+%d+%d' % (310, 340, x, y))
+  main_frame.pack_forget()
+  start_frame.pack(fill=BOTH, expand=True)
+
+logout_button = ttk.Button(main, text='Log out', command=logout, style='primary.Outline.TButton', cursor='hand2')
+
 def open_file():
   types = (('Audio files', '*.mp3'), ('All files', '*.*'))
   file = fd.askopenfile(title='Open audio file', filetypes=types)
 
-file_button = ttk.Button(main, text='Open audio file', command=open_file, style='file-button.TButton')
-style.configure('file-button.TButton', )
+file_button = ttk.Button(main, text='Open audio file', command=open_file, style='primary.Outline.TButton', cursor='hand2')
 
 #add elements to main frame
+logout_button.place(relx=0.925,y=360,anchor=CENTER)
 file_button.pack()
 ##################################################
 
