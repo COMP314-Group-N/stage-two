@@ -4,9 +4,11 @@ from tkinter import *
 from tkinter import filedialog as fd
 from ttkbootstrap import Style
 from tkinter import ttk
+import librosa as lib
 
 #functional imports
 import csv
+from statemachine import StateMachine as sm, State
 
 #WINDOW
 ##################################################
@@ -38,7 +40,7 @@ main_frame.pack(fill=BOTH, expand=True)
 #creates tab interface
 tabs = ttk.Notebook(start_frame)
 style.configure('TNotebook', padding=5)
-style.configure('TNotebook.Tab', font=('Ubuntu', 10))
+style.configure('TNotebook.Tab', font=('Leelawadee', 10))
 tabs.pack(fill=BOTH, expand=True)
 
 #create a tab for each screen
@@ -53,14 +55,14 @@ tabs.add(signup, text='Sign up')
 #LOGIN
 ##################################################
 #labels
-login_lheader = ttk.Label(login, text='LOGIN', font=('Ubuntu', 20))
-login_lusername = ttk.Label(login, text='Username', font=('Ubuntu', 11))
-login_lpassword = ttk.Label(login, text='Password', font=('Ubuntu', 11))
-login_error = ttk.Label(login, text='', font=('Ubuntu', 9), style='danger.TLabel', justify=CENTER)
+login_lheader = ttk.Label(login, text='LOGIN', font=('Leelawadee', 20))
+login_lusername = ttk.Label(login, text='Username', font=('Leelawadee', 11))
+login_lpassword = ttk.Label(login, text='Password', font=('Leelawadee', 11))
+login_error = ttk.Label(login, text='', font=('Leelawadee', 9), style='danger.TLabel', justify=CENTER)
 
 #entries
-login_eusername = ttk.Entry(login, textvariable=StringVar, font=('Ubuntu', 11), width=29, justify=CENTER, style='primary.TEntry')
-login_epassword = ttk.Entry(login, textvariable=StringVar, font=('Ubuntu', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
+login_eusername = ttk.Entry(login, textvariable=StringVar, font=('Leelawadee', 11), width=29, justify=CENTER, style='primary.TEntry')
+login_epassword = ttk.Entry(login, textvariable=StringVar, font=('Leelawadee', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
 
 #button
 def check_login():
@@ -88,7 +90,7 @@ def check_login():
 
 login_button = ttk.Button(login, text='Log in', style='primary.Outline.TButton', command=check_login, cursor='hand2')
 
-style.configure('primary.Outline.TButton', font=('Ubuntu', 11), justify=CENTER)
+style.configure('primary.Outline.TButton', font=('Leelawadee', 11), justify=CENTER)
 
 #checkbox
 login_checked = tk.IntVar()
@@ -103,9 +105,9 @@ login_checkbox = ttk.Checkbutton(login, command=login_showpassword, variable=log
 
 #add elements to login
 login_lheader.place(relx=0.5,y=35,anchor=CENTER)
-login_lusername.place(x=30,y=65)
+login_lusername.place(x=30,y=68)
 login_eusername.place(relx=0.5,y=106,anchor=CENTER)
-login_lpassword.place(x=30,y=135)
+login_lpassword.place(x=30,y=138)
 login_epassword.place(relx=0.45,y=176, anchor=CENTER)
 login_button.place(relx=0.5,y=230,anchor=CENTER)
 login_checkbox.place(relx=0.875,y=176,anchor=CENTER)
@@ -115,14 +117,14 @@ login_error.place(relx=0.5,y=270,anchor=CENTER)
 #SIGNUP
 ##################################################
 #labels
-signup_lheader = ttk.Label(signup, text='SIGN UP', font=('Ubuntu', 20))
-signup_lusername = ttk.Label(signup, text='Username', font=('Ubuntu', 11))
-signup_lpassword = ttk.Label(signup, text='Password', font=('Ubuntu', 11))
-signup_error = ttk.Label(signup, text='', font=('Ubuntu', 9), style='danger.TLabel')
+signup_lheader = ttk.Label(signup, text='SIGN UP', font=('Leelawadee', 20))
+signup_lusername = ttk.Label(signup, text='Username', font=('Leelawadee', 11))
+signup_lpassword = ttk.Label(signup, text='Password', font=('Leelawadee', 11))
+signup_error = ttk.Label(signup, text='', font=('Leelawadee', 9), style='danger.TLabel')
 
 #entries
-signup_eusername = ttk.Entry(signup, textvariable=StringVar, font=('Ubuntu', 11), width=29, justify=CENTER, style='primary.TEntry')
-signup_epassword = ttk.Entry(signup, textvariable=StringVar, font=('Ubuntu', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
+signup_eusername = ttk.Entry(signup, textvariable=StringVar, font=('Leelawadee', 11), width=29, justify=CENTER, style='primary.TEntry')
+signup_epassword = ttk.Entry(signup, textvariable=StringVar, font=('Leelawadee', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
 
 
 def sign_up():
@@ -177,9 +179,9 @@ signup_checkbox = ttk.Checkbutton(signup, command=signup_showpassword, variable=
 
 #add elements to signup
 signup_lheader.place(relx=0.5,y=35,anchor=CENTER)
-signup_lusername.place(x=30,y=65)
+signup_lusername.place(x=30,y=68)
 signup_eusername.place(relx=0.5,y=106,anchor=CENTER)
-signup_lpassword.place(x=30,y=135)
+signup_lpassword.place(x=30,y=138)
 signup_epassword.place(relx=0.45,y=176, anchor=CENTER)
 signup_button.place(relx=0.5,y=230,anchor=CENTER)
 signup_checkbox.place(relx=0.875,y=176,anchor=CENTER)
@@ -191,6 +193,23 @@ signup_error.place(relx=0.5,y=270,anchor=CENTER)
 main = Frame(main_frame,highlightbackground='#526170',highlightthickness=1)
 main.pack(padx=5,pady=5,fill=BOTH,expand=True)
 
+#Audio
+def process_audio(file):
+  audio_file = lib.load(file)
+  y, sr = audio_file
+  tempo, beat_frames = lib.beat.beat_track(y=y,sr=sr)
+  main_ebeats.insert(0,'{:.2f} BPM'.format(tempo))
+
+#FSM
+
+
+#labels
+main_header = ttk.Label(main, text='GENRE CLASSIFICATION', font=('Leelawadee', 20))
+main_lbeats = ttk.Label(main, text='Estimated beats per minute', font=('Leelawadee', 11))
+
+#entries
+main_ebeats = ttk.Entry(main, textvariable=StringVar, font=('Leelawadee', 11), width=25, justify=CENTER, style='primary.TEntry')
+
 #buttons
 def logout():
   x = (screen_width/2) - (310/2)
@@ -199,17 +218,24 @@ def logout():
   main_frame.pack_forget()
   start_frame.pack(fill=BOTH, expand=True)
 
-logout_button = ttk.Button(main, text='Log out', command=logout, style='primary.Outline.TButton', cursor='hand2')
+logout_button = ttk.Button(main, text='Log out', command=logout, style='danger.Outline.TButton', cursor='hand2')
+style.configure('danger.Outline.TButton', font=('Leelawadee', 11), justify=CENTER)
 
 def open_file():
-  types = (('Audio files', '*.mp3'), ('All files', '*.*'))
-  file = fd.askopenfile(title='Open audio file', filetypes=types)
+  types = (('Audio files', ['*.mp3', '*.wav']), ('All files', '*.*'))
+  file = fd.askopenfilename(title='Open audio file', filetypes=types)
+  if file != '':
+    process_audio(file)
 
 file_button = ttk.Button(main, text='Open audio file', command=open_file, style='primary.Outline.TButton', cursor='hand2')
 
 #add elements to main frame
-logout_button.place(relx=0.925,y=360,anchor=CENTER)
-file_button.pack()
+main_header.place(relx=0.5,y=35,anchor=CENTER)
+main_lbeats.place(relx=0.165,y=78,anchor=CENTER)
+main_ebeats.place(relx=0.18,y=106,anchor=CENTER)
+file_button.place(relx=0.11,y=355,anchor=CENTER)
+logout_button.place(relx=0.925,y=355,anchor=CENTER)
+
 ##################################################
 
 window.mainloop()
