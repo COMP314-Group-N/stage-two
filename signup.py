@@ -10,16 +10,17 @@ def signup_frame(parent, window, start_frame, main_frame, screen_height, screen_
   signup = Frame(parent)
   style = Style(theme='superhero')
 
-  #labels
+  #labels==============
   signup_lheader = ttk.Label(signup, text='SIGN UP', font=('Leelawadee', 20))
   signup_lusername = ttk.Label(signup, text='Username', font=('Leelawadee', 11))
   signup_lpassword = ttk.Label(signup, text='Password', font=('Leelawadee', 11))
   signup_error = ttk.Label(signup, text='', font=('Leelawadee', 9), style='danger.TLabel')
+  #====================
 
-  #entries
+  #entries=============
   signup_eusername = ttk.Entry(signup, textvariable=StringVar, font=('Leelawadee', 11), width=29, justify=CENTER, style='primary.TEntry')
   signup_epassword = ttk.Entry(signup, textvariable=StringVar, font=('Leelawadee', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
-
+  #====================
 
   def sign_up():
     dict = {'USERNAME': signup_eusername.get(), 'PASSWORD': signup_epassword.get()}
@@ -30,11 +31,16 @@ def signup_frame(parent, window, start_frame, main_frame, screen_height, screen_
       csvfile.close()
 
     main_frame.pack(fill=BOTH, expand=True)
-    x = (screen_width/2) - (750/2)
+    x = (screen_width/2) - (525/2)
     y = (screen_height/2) - (400/2)
-    window.geometry('%dx%d+%d+%d' % (750, 400, x, y))
+    window.geometry('%dx%d+%d+%d' % (525, 400, x, y))
     start_frame.pack_forget()
     signup_error.config(text='')
+
+    signup_eusername.delete(0, END)
+    signup_epassword.delete(0, END)
+    login_eusername.delete(0, END)
+    login_epassword.delete(0, END)
 
   def check_user():
     special_characters = "!@#$%^&*()-+?_=,<>/\"\'"
@@ -67,8 +73,9 @@ def signup_frame(parent, window, start_frame, main_frame, screen_height, screen_
       signup_error.config(text='Please enter a username')
 
   signup_button = ttk.Button(signup, text='Create account', style='primary.Outline.TButton', command=check_user, cursor='hand2')
+  #====================
 
-  #checkbox
+  #checkbox============
   signup_checked = tk.IntVar()
 
   def signup_showpassword():
@@ -78,6 +85,7 @@ def signup_frame(parent, window, start_frame, main_frame, screen_height, screen_
       signup_epassword.config(show='*')
 
   signup_checkbox = ttk.Checkbutton(signup, command=signup_showpassword, variable=signup_checked, onvalue=1, offvalue=0, cursor='hand2', style='primary.Squaretoggle.Toolbutton')
+  #====================
 
   #add elements to signup
   signup_lheader.place(relx=0.5,y=35,anchor=CENTER)
@@ -88,5 +96,6 @@ def signup_frame(parent, window, start_frame, main_frame, screen_height, screen_
   signup_button.place(relx=0.5,y=230,anchor=CENTER)
   signup_checkbox.place(relx=0.875,y=176,anchor=CENTER)
   signup_error.place(relx=0.5,y=270,anchor=CENTER)
+  #====================
 
   return signup
