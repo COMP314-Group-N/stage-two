@@ -11,15 +11,18 @@ query = Query()
 
 class Login(tk.Frame):
   def __init__(self, master):
+    master.title('Login')
+
     Frame.__init__(self, master)
+    self.config(highlightthickness=1, highlightbackground='#7F8B96')
     style = Style(theme='superhero')
 
-    screen_width = master.winfo_screenwidth()
-    screen_height = master.winfo_screenheight()
-    x = (screen_width/2) - (310/2)
-    y = (screen_height/2) - (340/2)
-    master.geometry('%dx%d+%d+%d' % (310, 340, x, y))
-    self.pack(fill=BOTH, expand=True)
+    w = master.winfo_screenwidth()
+    h = master.winfo_screenheight()
+    x = (w/2) - (310/2)
+    y = (h/2) - (320/2)
+    master.geometry('%dx%d+%d+%d' % (310, 320, x, y))
+    self.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
     #labels==============
     lheader = ttk.Label(self, text='LOGIN', font=('Leelawadee', 20))
@@ -33,7 +36,7 @@ class Login(tk.Frame):
     epassword = ttk.Entry(self, textvariable=StringVar, font=('Leelawadee', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
     #====================
 
-    #button==============
+    #check login details by querying login.json
     def check_login():
       if (db.search(query.username == eusername.get())):
         if (db.search((query.username == eusername.get()) & 
@@ -45,10 +48,12 @@ class Login(tk.Frame):
           error.config(text='Incorrect password')
       else:
         error.config(text='User does not exist')      
+    #====================
 
-    button = ttk.Button(self, text='Log in', style='primary.Outline.TButton', cursor='hand2', command=check_login)
+    #buttons=============
+    blogin = ttk.Button(self, text='Log in', style='primary.Outline.TButton', cursor='hand2', command=check_login)
 
-    style.configure('primary.Outline.TButton', font=('Leelawadee', 11), justify=CENTER)
+    bsignup = ttk.Button(self, text='Sign up ->', style='primary.Outline.TButton', command=lambda: master.switch_frame("SignUp"), cursor='hand2')
     #====================
 
     #checkbox============
@@ -64,14 +69,15 @@ class Login(tk.Frame):
     #====================
 
     #add elements to login
-    lheader.place(relx=0.5,y=35,anchor=CENTER)
-    lusername.place(x=30,y=68)
-    eusername.place(relx=0.5,y=106,anchor=CENTER)
-    lpassword.place(x=30,y=138)
-    epassword.place(relx=0.45,y=176, anchor=CENTER)
-    button.place(relx=0.5,y=230,anchor=CENTER)
-    checkbox.place(relx=0.875,y=176,anchor=CENTER)
-    error.place(relx=0.5,y=270,anchor=CENTER)
+    lheader.place(relx=0.5,y=40,anchor=CENTER)
+    lusername.place(x=30,y=73)
+    eusername.place(relx=0.5,y=111,anchor=CENTER)
+    lpassword.place(x=30,y=143)
+    epassword.place(relx=0.45,y=181, anchor=CENTER)
+    blogin.place(relx=0.5,y=235,anchor=CENTER)
+    checkbox.place(relx=0.875,y=181,anchor=CENTER)
+    error.place(relx=0.5,y=275,anchor=CENTER)
+    bsignup.pack()
     #====================
 
 if __name__ == "__main__":

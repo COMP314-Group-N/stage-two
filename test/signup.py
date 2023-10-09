@@ -11,14 +11,24 @@ query = Query()
 
 class SignUp(tk.Frame):
   def __init__(self, master):
+    master.title('Sign up')
+
     Frame.__init__(self, master)
+    self.config(highlightthickness=1, highlightbackground='#7F8B96')
     style = Style(theme='superhero')
+
+    w = master.winfo_screenwidth()
+    h = master.winfo_screenheight()
+    x = (w/2) - (310/2)
+    y = (h/2) - (320/2)
+    master.geometry('%dx%d+%d+%d' % (310, 320, x, y))
+    self.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
     #labels==============
     lheader = ttk.Label(self, text='SIGN UP', font=('Leelawadee', 20))
     lusername = ttk.Label(self, text='Username', font=('Leelawadee', 11))
     lpassword = ttk.Label(self, text='Password', font=('Leelawadee', 11))
-    error = ttk.Label(self, text='', font=('Leelawadee', 9), style='danger.TLabel')
+    error = ttk.Label(self, text='', font=('Leelawadee', 9), style='danger.TLabel', justify=CENTER)
     #====================
 
     #entries=============
@@ -32,6 +42,7 @@ class SignUp(tk.Frame):
       error.config(text='')
 
       master.switch_frame("AudioGen")
+    #====================
 
     #checks if user exists in login.json
     def check_user():
@@ -48,13 +59,17 @@ class SignUp(tk.Frame):
               else:
                 error.config(text='Your password may only contain alphanumeric characters')
           else:
-            error.config(text='User already exists\nTry logging in')
+            error.config(text='User already exists')
         else:
-          error.config(text='Your username may only contain alphanumeric characters')
+          error.config(text='Only alphanumeric characters allowed')
       else:
         error.config(text='Please enter a username')
+    #====================
 
-    button = ttk.Button(self, text='Create account', style='primary.Outline.TButton', command=check_user, cursor='hand2')
+    #buttons=============
+    bsignup = ttk.Button(self, text='Create account', style='primary.Outline.TButton', command=check_user, cursor='hand2')
+
+    blogin = ttk.Button(self, text='Login ->', style='primary.Outline.TButton', command=lambda: master.switch_frame("Login"), cursor='hand2')
     #====================
 
     #checkbox============
@@ -70,17 +85,16 @@ class SignUp(tk.Frame):
     #====================
 
     #add elements to signup
-    lheader.place(relx=0.5,y=35,anchor=CENTER)
-    lusername.place(x=30,y=68)
-    eusername.place(relx=0.5,y=106,anchor=CENTER)
-    lpassword.place(x=30,y=138)
-    epassword.place(relx=0.45,y=176, anchor=CENTER)
-    button.place(relx=0.5,y=230,anchor=CENTER)
-    checkbox.place(relx=0.875,y=176,anchor=CENTER)
-    error.place(relx=0.5,y=270,anchor=CENTER)
+    lheader.place(relx=0.5,y=40,anchor=CENTER)
+    lusername.place(x=30,y=73)
+    eusername.place(relx=0.5,y=111,anchor=CENTER)
+    lpassword.place(x=30,y=142)
+    epassword.place(relx=0.45,y=181, anchor=CENTER)
+    bsignup.place(relx=0.5,y=235,anchor=CENTER)
+    checkbox.place(relx=0.875,y=181,anchor=CENTER)
+    error.place(relx=0.5,y=275,anchor=CENTER)
+    blogin.pack()
     #====================
-
-    tk.Button(self, text="go to login", command=lambda: master.switch_frame("Login")).pack()
 
 if __name__ == "__main__":
     app = SignUp()
