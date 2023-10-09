@@ -4,7 +4,10 @@ from tkinter import filedialog as fd
 from ttkbootstrap import Style
 from tkinter import ttk
 
-import csv
+from tinydb import TinyDB, Query
+
+db = TinyDB('login.json')
+query = Query()
 
 def signup_frame(parent, window, start_frame, main_frame, screen_height, screen_width):
   signup = Frame(parent)
@@ -22,13 +25,9 @@ def signup_frame(parent, window, start_frame, main_frame, screen_height, screen_
   signup_epassword = ttk.Entry(signup, textvariable=StringVar, font=('Leelawadee', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
   #====================
 
+  #adds new user details to login.json
   def sign_up():
-    dict = {'USERNAME': signup_eusername.get(), 'PASSWORD': signup_epassword.get()}
-
-    with open('login.csv', 'a') as csvfile:
-      writer = csv.DictWriter(csvfile, fieldnames=['USERNAME', 'PASSWORD'])
-      writer.writerow(dict)
-      csvfile.close()
+    db.insert({'username': signup_eusername.get(), 'password': signup_epassword.get()})
 
     main_frame.pack(fill=BOTH, expand=True)
     x = (screen_width/2) - (525/2)
@@ -39,34 +38,23 @@ def signup_frame(parent, window, start_frame, main_frame, screen_height, screen_
 
     signup_eusername.delete(0, END)
     signup_epassword.delete(0, END)
-    login_eusername.delete(0, END)
-    login_epassword.delete(0, END)
 
+  #checks if user exists in login.json
   def check_user():
     special_characters = "!@#$%^&*()-+?_=,<>/\"\'"
     if signup_eusername.get() != '':
       if not any(char in special_characters for char in signup_eusername.get()):
-        with open('login.csv', 'r') as csvfile:
-          reader = csv.DictReader(csvfile)
-          exists = False
-          for row in reader:
-            if signup_eusername.get() == row['USERNAME']:
-              exists = True
-              break
-            else:
-              exists = False
-            
-          if exists:
-            signup_error.config(text='User already exists.\nTry logging in.')
+        if not db.search(query.username == signup_eusername.get()):
+          if signup_epassword.get() == '':
+            signup_error.config(text='Please enter a password.')
+            signup_epassword.focus()
           else:
-            if signup_epassword.get() == '':
-              signup_error.config(text='Please enter a password.')
-              signup_epassword.focus()
+            if not any(char in special_characters for char in signup_epassword.get()):
+              sign_up() 
             else:
-              if not any(char in special_characters for char in signup_epassword.get()):
-                sign_up() 
-              else:
-                signup_error.config(text='Your password may only contain alphanumeric characters')
+              signup_error.config(text='Your password may only contain alphanumeric characters')
+        else:
+          signup_error.config(text='User already exists\nTry logging in')
       else:
         signup_error.config(text='Your username may only contain alphanumeric characters')
     else:

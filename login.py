@@ -4,7 +4,10 @@ from tkinter import filedialog as fd
 from ttkbootstrap import Style
 from tkinter import ttk
 
-import csv
+from tinydb import TinyDB, Query
+
+db = TinyDB('login.json')
+query = Query()
 
 def login_frame(parent, window, start_frame, main_frame, screen_height, screen_width):
   login = Frame(parent)
@@ -24,32 +27,23 @@ def login_frame(parent, window, start_frame, main_frame, screen_height, screen_w
 
   #button==============
   def check_login():
-    with open('login.csv', 'r') as csvfile:
-      reader = csv.DictReader(csvfile)
-      exists = False
-      for row in reader:
-        if login_eusername.get() == row['USERNAME']:
-          if login_epassword.get() == row['PASSWORD']:
-            main_frame.pack(fill=BOTH, expand=True)
-            x = (screen_width/2) - (525/2)
-            y = (screen_height/2) - (400/2)
-            window.geometry('%dx%d+%d+%d' % (525, 400, x, y))
+    if (db.search(query.username == login_eusername.get())):
+      if (db.search((query.username == login_eusername.get()) & 
+                    (query.password == login_epassword.get()))):
+        main_frame.pack(fill=BOTH, expand=True)
+        x = (screen_width/2) - (525/2)
+        y = (screen_height/2) - (400/2)
+        window.geometry('%dx%d+%d+%d' % (525, 400, x, y))
 
-            start_frame.pack_forget()
-            login_error.config(text='')
+        start_frame.pack_forget()
+        login_error.config(text='')
 
-            login_eusername.delete(0, END)
-            login_epassword.delete(0, END)
-            signup_eusername.delete(0, END)
-            signup_epassword.delete(0, END)
-          else:
-            login_error.config(text='Incorrect password.')
-
-          exists = True
-          break
-
-      if exists == False:
-        login_error.config(text = 'User does not exist.\nRe-enter details or try signing up.')
+        login_eusername.delete(0, END)
+        login_epassword.delete(0, END)
+      else: 
+        login_error.config(text='Incorrect password')
+    else:
+      login_error.config(text='User does not exist')      
 
   login_button = ttk.Button(login, text='Log in', style='primary.Outline.TButton', command=check_login, cursor='hand2')
 
