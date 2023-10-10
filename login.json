@@ -11,6 +11,10 @@
     "3": {
       "username": "user02",
       "password": "pass02"
+    },
+    "4": {
+      "username": "user03",
+      "password": "pass03"
     }
   }
 }

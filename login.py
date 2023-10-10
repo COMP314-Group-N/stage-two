@@ -9,68 +9,77 @@ from tinydb import TinyDB, Query
 db = TinyDB('login.json')
 query = Query()
 
-def login_frame(parent, window, start_frame, main_frame, screen_height, screen_width):
-  login = Frame(parent)
-  style = Style(theme='superhero')
+class Login(tk.Frame):
+  def __init__(self, master):
+    master.title('Login')
 
-  #labels==============
-  login_lheader = ttk.Label(login, text='LOGIN', font=('Leelawadee', 20))
-  login_lusername = ttk.Label(login, text='Username', font=('Leelawadee', 11))
-  login_lpassword = ttk.Label(login, text='Password', font=('Leelawadee', 11))
-  login_error = ttk.Label(login, text='', font=('Leelawadee', 9), style='danger.TLabel', justify=CENTER)
-  #====================
+    Frame.__init__(self, master)
+    self.config(highlightthickness=1, highlightbackground='#7F8B96')
+    style = Style(theme='superhero')
 
-  #entries=============
-  login_eusername = ttk.Entry(login, textvariable=StringVar, font=('Leelawadee', 11), width=29, justify=CENTER, style='primary.TEntry')
-  login_epassword = ttk.Entry(login, textvariable=StringVar, font=('Leelawadee', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
-  #====================
+    w = master.winfo_screenwidth()
+    h = master.winfo_screenheight()
+    x = (w/2) - (310/2)
+    y = (h/2) - (320/2)
+    master.geometry('%dx%d+%d+%d' % (310, 320, x, y))
+    self.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
-  #button==============
-  def check_login():
-    if (db.search(query.username == login_eusername.get())):
-      if (db.search((query.username == login_eusername.get()) & 
-                    (query.password == login_epassword.get()))):
-        main_frame.pack(fill=BOTH, expand=True)
-        x = (screen_width/2) - (525/2)
-        y = (screen_height/2) - (400/2)
-        window.geometry('%dx%d+%d+%d' % (525, 400, x, y))
+    #labels==============
+    lheader = ttk.Label(self, text='LOGIN', font=('Leelawadee', 20))
+    lusername = ttk.Label(self, text='Username', font=('Leelawadee', 11))
+    lpassword = ttk.Label(self, text='Password', font=('Leelawadee', 11))
+    error = ttk.Label(self, text='', font=('Leelawadee', 9), style='danger.TLabel', justify=CENTER)
+    #====================
 
-        start_frame.pack_forget()
-        login_error.config(text='')
+    #entries=============
+    eusername = ttk.Entry(self, textvariable=StringVar, font=('Leelawadee', 11), width=29, justify=CENTER, style='primary.TEntry')
+    epassword = ttk.Entry(self, textvariable=StringVar, font=('Leelawadee', 11), width=25, justify=CENTER, style='primary.TEntry', show='*')
+    #====================
 
-        login_eusername.delete(0, END)
-        login_epassword.delete(0, END)
-      else: 
-        login_error.config(text='Incorrect password')
-    else:
-      login_error.config(text='User does not exist')      
+    #check login details by querying login.json
+    def check_login():
+      if (db.search(query.username == eusername.get())):
+        if (db.search((query.username == eusername.get()) & 
+                      (query.password == epassword.get()))):
+          error.config(text='')
 
-  login_button = ttk.Button(login, text='Log in', style='primary.Outline.TButton', command=check_login, cursor='hand2')
+          master.switch_frame("AudioGen")
+        else: 
+          error.config(text='Incorrect password')
+      else:
+        error.config(text='User does not exist')      
+    #====================
 
-  style.configure('primary.Outline.TButton', font=('Leelawadee', 11), justify=CENTER)
-  #====================
+    #buttons=============
+    blogin = ttk.Button(self, text='Log in', style='primary.Outline.TButton', cursor='hand2', command=check_login)
 
-  #checkbox============
-  login_checked = tk.IntVar()
+    bsignup = ttk.Button(self, text='Sign up ->', style='primary.Outline.TButton', cursor='hand2', command=lambda: master.switch_frame("SignUp"))
+    #====================
 
-  def login_showpassword():
-    if login_checked.get():
-      login_epassword.config(show='')
-    else:
-      login_epassword.config(show='*')
+    #checkbox============
+    checked = tk.IntVar()
 
-  login_checkbox = ttk.Checkbutton(login, command=login_showpassword, variable=login_checked, onvalue=1, offvalue=0, cursor='hand2', style='primary.Squaretoggle.Toolbutton')
-  #====================
+    def show_password():
+      if checked.get():
+        epassword.config(show='')
+      else:
+        epassword.config(show='*')
 
-  #add elements to login
-  login_lheader.place(relx=0.5,y=35,anchor=CENTER)
-  login_lusername.place(x=30,y=68)
-  login_eusername.place(relx=0.5,y=106,anchor=CENTER)
-  login_lpassword.place(x=30,y=138)
-  login_epassword.place(relx=0.45,y=176, anchor=CENTER)
-  login_button.place(relx=0.5,y=230,anchor=CENTER)
-  login_checkbox.place(relx=0.875,y=176,anchor=CENTER)
-  login_error.place(relx=0.5,y=270,anchor=CENTER)
-  #====================
+    checkbox = ttk.Checkbutton(self, command=show_password, variable=checked, onvalue=1, offvalue=0, cursor='hand2', style='primary.Squaretoggle.Toolbutton')
+    #====================
 
-  return login
+    #add elements to login
+    lheader.place(relx=0.5, y=40,anchor=CENTER)
+    lusername.place(x=30, y=73)
+    eusername.place(relx=0.5, y=111, anchor=CENTER)
+    lpassword.place(x=30, y=143)
+    epassword.place(relx=0.45, y=181, anchor=CENTER)
+    blogin.place(relx=0.325, y=235, anchor=CENTER)
+    checkbox.place(relx=0.875, y=181, anchor=CENTER)
+    error.place(relx=0.5, y=275,anchor=CENTER)
+    bsignup.place(relx=0.625, y=235, anchor=CENTER)
+    #====================
+
+if __name__ == "__main__":
+  app = Login()
+  app.mainloop()
