@@ -41,7 +41,7 @@ class SignUp(tk.Frame):
       db.insert({'username': eusername.get(), 'password': epassword.get()})
       error.config(text='')
 
-      master.switch_frame("AudioGen")
+      master.switch_frame("Genre")
     #====================
 
     #checks if user exists in login.json
@@ -84,16 +84,16 @@ class SignUp(tk.Frame):
     checkbox = ttk.Checkbutton(self, command=show_password, variable=checked, onvalue=1, offvalue=0, cursor='hand2', style='primary.Squaretoggle.Toolbutton')
     #====================
 
-    #add elements to signup
-    lheader.place(relx=0.5,y=40,anchor=CENTER)
+    #add elements to frame
+    lheader.place(relx=.5,y=40,anchor=CENTER)
     lusername.place(x=30,y=73)
-    eusername.place(relx=0.5,y=111,anchor=CENTER)
+    eusername.place(relx=.5,y=111,anchor=CENTER)
     lpassword.place(x=30,y=143)
-    epassword.place(relx=0.45,y=181, anchor=CENTER)
-    bsignup.place(relx=0.35,y=235,anchor=CENTER)
-    checkbox.place(relx=0.875,y=181,anchor=CENTER)
-    error.place(relx=0.5,y=275,anchor=CENTER)
-    blogin.place(relx=0.71, y=235, anchor=CENTER)
+    epassword.place(relx=.45,y=181, anchor=CENTER)
+    bsignup.place(relx=.35,y=235,anchor=CENTER)
+    checkbox.place(relx=.875,y=181,anchor=CENTER)
+    error.place(relx=.5,y=275,anchor=CENTER)
+    blogin.place(relx=.71, y=235, anchor=CENTER)
     #====================
 
 if __name__ == "__main__":

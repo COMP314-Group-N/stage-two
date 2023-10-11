@@ -7,7 +7,7 @@ from tkinter import ttk
 import librosa as lib
 import librosa.display
 
-class AudioGen(tk.Frame):
+class Genre(tk.Frame):
   def __init__(self, master):
     master.title('Login')
 
@@ -18,8 +18,8 @@ class AudioGen(tk.Frame):
     w = master.winfo_screenwidth()
     h = master.winfo_screenheight()
     x = (w/2) - (525/2)
-    y = (h/2) - (400/2)
-    master.geometry('%dx%d+%d+%d' % (525, 400, x, y))
+    y = (h/2) - (390/2)
+    master.geometry('%dx%d+%d+%d' % (525, 390, x, y))
     self.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
     #FSM=================
@@ -81,11 +81,11 @@ class AudioGen(tk.Frame):
       selText.set('\'' + file.rsplit('/', 1)[1] + '\'')
       y, sr = audio_file
       tempo, beat_frames = lib.beat.beat_track(y=y,sr=sr)
-      main_ebeats.delete(0, END)
+      ebeats.delete(0, END)
       beatText.set('{:.2f} BPM'.format(tempo))
-      main_ttempo.delete('1.0', END)
-      main_ttempo.insert(INSERT, beat_frames)
-      main_ttempo.config(state=DISABLED)  
+      ttempo.delete('1.0', END)
+      ttempo.insert(INSERT, beat_frames)
+      ttempo.config(state=DISABLED)  
       song_genre_fsm = GenreFSM()
       genre = song_genre_fsm.determine_genre(file)
       current_genre = song_genre_fsm.get_current_genre()
@@ -95,12 +95,12 @@ class AudioGen(tk.Frame):
     #====================
 
     #labels==============
-    main_header = ttk.Label(self, text='GENRE CLASSIFICATION', font=('Leelawadee', 20))
-    main_lselected = ttk.Label(self, text='Selected audio file', font=('Leelawadee', 11))
-    main_lbeats = ttk.Label(self, text='Estimated beats per minute', font=('Leelawadee', 11))
-    main_ltempo = ttk.Label(self, text='Beat frames', font=('Leelawadee', 11))
-    main_lcurrent = ttk.Label(self, text='Current genre', font=('Leelawadee', 11))
-    main_lgenre = ttk.Label(self, text='Determined genre', font=('Leelawadee', 11))
+    header = ttk.Label(self, text='GENRE CLASSIFICATION', font=('Leelawadee', 20))
+    lselected = ttk.Label(self, text='Selected audio file', font=('Leelawadee', 11))
+    lbeats = ttk.Label(self, text='Estimated beats per minute', font=('Leelawadee', 11))
+    ltempo = ttk.Label(self, text='Beat frames', font=('Leelawadee', 11))
+    lcurrent = ttk.Label(self, text='Current genre', font=('Leelawadee', 11))
+    lgenre = ttk.Label(self, text='Determined genre', font=('Leelawadee', 11))
     #====================
 
     #entries=============
@@ -108,46 +108,48 @@ class AudioGen(tk.Frame):
     selText = StringVar()
     curText = StringVar()
     detText = StringVar()
-    main_ebeats = ttk.Entry(self, textvariable=beatText, state='readonly', font=('Leelawadee', 11), style='primary', width=25)
-    main_eselected = ttk.Entry(self, textvariable=selText, state='readonly', font=('Leelawadee', 11), style='primary', width=25)
-    main_ecurrent = ttk.Entry(self, textvariable=curText, state='readonly', font=('Leelawadee', 11), style='primary', width=25)
-    main_egenre = ttk.Entry(self, textvariable=detText, state='readonly', font=('Leelawadee', 11), style='primary', width=25)
+    ebeats = ttk.Entry(self, textvariable=beatText, state='readonly', font=('Leelawadee', 11), style='primary', width=25)
+    eselected = ttk.Entry(self, textvariable=selText, state='readonly', font=('Leelawadee', 11), style='primary', width=25)
+    ecurrent = ttk.Entry(self, textvariable=curText, state='readonly', font=('Leelawadee', 11), style='primary', width=25)
+    egenre = ttk.Entry(self, textvariable=detText, state='readonly', font=('Leelawadee', 11), style='primary', width=25)
     #====================
 
     #texts===============
-    main_ttempo = Text(self, height=2, width=57, font=('Leelawadee', 11), yscrollcommand=set())
+    ttempo = Text(self, height=2, width=55, font=('Leelawadee', 11), yscrollcommand=set())
     #====================
 
     #buttons=============
-    logout_button = ttk.Button(self, text='Log out', style='danger.Outline.TButton', cursor='hand2', command=lambda: master.switch_frame('Login'))
-    style.configure('danger.Outline.TButton', font=('Leelawadee', 11), justify=CENTER)
+    blogout = ttk.Button(self, text='Log out', style='danger.Outline.TButton', cursor='hand2', command=lambda: master.switch_frame('Login'))
 
     def open_file():
-      main_ttempo.config(state=NORMAL)
+      ttempo.config(state=NORMAL)
       types = (('Audio files', ['*.mp3', '*.wav']), ('All files', '*.*'))
       file = fd.askopenfilename(title='Open audio file', filetypes=types)
       if file != '':
         process_audio(file)
 
-    file_button = ttk.Button(self, text='Open audio file', command=open_file, style='primary.Outline.TButton', cursor='hand2')
+    bfile = ttk.Button(self, text='Open audio file', command=open_file, style='primary.Outline.TButton', cursor='hand2')
+
+    bcharts = ttk.Button(self, text='View charts', style='primary.Outline.TButton', cursor='hand2', command=lambda: master.switch_frame('Charts'))
     #====================
 
-    #add elements to main frame
-    main_header.place(relx=0.5,y=45,anchor=CENTER)
-    main_lselected.place(relx=.0425,y=98,anchor=W)
-    main_eselected.place(relx=.0425,y=126,anchor=W)
-    main_lbeats.place(relx=.54,y=98,anchor=W)
-    main_ebeats.place(relx=.54,y=126,anchor=W)
-    main_ltempo.place(relx=.0425,y=170,anchor=W)
-    main_ttempo.place(relx=.0425,y=208,anchor=W)
-    main_lcurrent.place(relx=.0425,y=260,anchor=W)
-    main_ecurrent.place(relx=.0425,y=288,anchor=W)
-    main_lgenre.place(relx=.54,y=260,anchor=W)
-    main_egenre.place(relx=.54,y=288,anchor=W)
-    file_button.place(relx=.0425,y=350,anchor=W)
-    logout_button.place(relx=.815,y=350,anchor=W)
+    #add elements to frame
+    header.place(relx=.5, y=45, anchor=CENTER)
+    lselected.place(relx=.06, y=98, anchor=W)
+    eselected.place(relx=.055, y=126, anchor=W)
+    lbeats.place(relx=.53, y=98, anchor=W)
+    ebeats.place(relx=.525, y=126, anchor=W)
+    ltempo.place(relx=.06, y=170, anchor=W)
+    ttempo.place(relx=.055, y=208, anchor=W)
+    lcurrent.place(relx=.06, y=260, anchor=W)
+    ecurrent.place(relx=.055, y=288, anchor=W)
+    lgenre.place(relx=.53, y=260, anchor=W)
+    egenre.place(relx=.525, y=288, anchor=W)
+    bfile.place(relx=.055, y=340, anchor=W)
+    blogout.place(relx=.815, y=340, anchor=W)
+    bcharts.place(relx=.625, y=340, anchor=W)
     #====================
 
 if __name__ == "__main__":
-    app = AudioGen()
+    app = Genre()
     app.mainloop()
