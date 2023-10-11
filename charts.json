@@ -1,386 +1,389 @@
 {
-  "_default": {
-    "1": {
-      "genre": [
-        {
-          "Country": [
-            {
-              "number": "1",
-              "title": "Wasted on You",
-              "artist": "Morgan Wallen"
-            },
-            {
-              "number": "2",
-              "title": "You Proof",
-              "artist": "Morgan Wallen"
-            },
-            {
-              "number": "3",
-              "title": "'Til you Can't",
-              "artist": "Cody Johnson"
-            },
-            {
-              "number": "4",
-              "title": "Fancy Like",
-              "artist": "Walker Hayes"
-            },
-            {
-              "number": "5",
-              "title": "The Kind of Love We Make",
-              "artist": "Luke Combs"
-            },
-            {
-              "number": "6",
-              "title": "Something in The Orange",
-              "artist": "Zach Bryan"
-            },
-            {
-              "number": "7",
-              "title": "She Had Me at Heads Carolina",
-              "artist": "Cole Swindell"
-            },
-            {
-              "number": "8",
-              "title": "Fall in Love",
-              "artist": "Bailey Zimmerman"
-            },
-            {
-              "number": "9",
-              "title": "Buy Dirt",
-              "artist": "Jordan Davis ft. Luke Bryan"
-            },
-            {
-              "number": "10",
-              "title": "AA",
-              "artist": "Walker Hayes"
-            }
-          ]
-        },
-        {
-          "Dubstep": [
-            {
-              "number": "1",
-              "title": "",
-              "artist": ""
-            },
-            {
-              "number": "2",
-              "title": "",
-              "artist": ""
-            },
-            {
-              "number": "3",
-              "title": "",
-              "artist": ""
-            },
-            {
-              "number": "4",
-              "title": "",
-              "artist": ""
-            },
-            {
-              "number": "5",
-              "title": "",
-              "artist": ""
-            },
-            {
-              "number": "6",
-              "title": "",
-              "artist": ""
-            },
-            {
-              "number": "7",
-              "title": "",
-              "artist": ""
-            },
-            {
-              "number": "8",
-              "title": "",
-              "artist": ""
-            },
-            {
-              "number": "9",
-              "title": "",
-              "artist": ""
-            },
-            {
-              "number": "10",
-              "title": "",
-              "artist": ""
-            }
-          ]
-        },
-        {
-          "Hip-Hop": [
-            {
-              "number": "1",
-              "title": "F.N.F.",
-              "artist": "Hitkidd, GloRilla"
-            },
-            {
-              "number": "2",
-              "title": "WAIT FOR U",
-              "artist": "Future ft. Drake, Tems"
-            },
-            {
-              "number": "3",
-              "title": "pushin P",
-              "artist": "Gunna, Future ft. Young Thug"
-            },
-            {
-              "number": "4",
-              "title": "Jimmy Cooks",
-              "artist": "Drake ft. 21 Savage"
-            },
-            {
-              "number": "5",
-              "title": "HOTEL LOBBY",
-              "artist": "Quavo, Takeoff"
-            },
-            {
-              "number": "6",
-              "title": "Die Hard",
-              "artist": "Kendrick Lamar, Blxst, Amanda Reifer"
-            },
-            {
-              "number": "7",
-              "title": "Tomorrow 2",
-              "artist": "GloRilla, Cardi B"
-            },
-            {
-              "number": "8",
-              "title": "Just Wanna Rock",
-              "artist": "Lil Uzi Vert"
-            },
-            {
-              "number": "9",
-              "title": "What Happened to Virgil",
-              "artist": "Lil Durk, Gunna"
-            },
-            {
-              "number": "10",
-              "title": "PUFFIN ON ZOOTIES",
-              "artist": "Future"
-            }
-          ]
-        },
-        {
-          "Jazz": [
-            {
-              "number": "1",
-              "title": "Coral Way",
-              "artist": "Alfredo Rodriguez"
-            },
-            {
-              "number": "2",
-              "title": "Between Two Worlds",
-              "artist": "Terell Stafford"
-            },
-            {
-              "number": "3",
-              "title": "Live at The Blue LLama",
-              "artist": "Allan Harris"
-            },
-            {
-              "number": "4",
-              "title": "Witness to History",
-              "artist": "Eddie Henderson"
-            },
-            {
-              "number": "5",
-              "title": "Earth Wind and Wonder vol 2",
-              "artist": "Don Braden"
-            },
-            {
-              "number": "6",
-              "title": "Bossa 65 Celebrating Carlos Lyra and Roberto Menescal",
-              "artist": "Antonio Adolfo"
-            },
-            {
-              "number": "7",
-              "title": "Plays Les McCann: Big Mo & Little Joe",
-              "artist": "Joe Alterman"
-            },
-            {
-              "number": "8",
-              "title": "Third Time's The Charm",
-              "artist": "Benny Benack III"
-            },
-            {
-              "number": "9",
-              "title": "My World",
-              "artist": "Diego Figueiredo"
-            },
-            {
-              "number": "10",
-              "title": "Desserts",
-              "artist": "Juan Carlos Quintero"
-            }
-          ]
-        },
-        {
-          "Pop": [
-            {
-              "number": "1",
-              "title": "Unholy",
-              "artist": "Sam Smith ft. Kim Petras"
-            },
-            {
-              "number": "2",
-              "title": "Big Energy",
-              "artist": "Latto"
-            },
-            {
-              "number": "3",
-              "title": "No One Dies From Love",
-              "artist": "Tove Lo"
-            },
-            {
-              "number": "4",
-              "title": "As It Was",
-              "artist": "Harry Styles"
-            },
-            {
-              "number": "5",
-              "title": "Anti-Hero",
-              "artist": "Taylor Swift"
-            },
-            {
-              "number": "6",
-              "title": "Until I Found You",
-              "artist": "Stephen Sanchez"
-            },
-            {
-              "number": "7",
-              "title": "Maybe You're The Problem",
-              "artist": "Ava Max"
-            },
-            {
-              "number": "8",
-              "title": "Boyfriend",
-              "artist": "Dove Cameron"
-            },
-            {
-              "number": "9",
-              "title": "Bad Habit",
-              "artist": "Steve Lacy"
-            },
-            {
-              "number": "10",
-              "title": "I Like You",
-              "artist": "Post Malone, Doja Cat"
-            }
-          ]
-        },
-        {
-          "Rock": [
-            {
-              "number": "1",
-              "title": "SUPERMODEL",
-              "artist": "Maneskin"
-            },
-            {
-              "number": "2",
-              "title": "Run Away to Mars",
-              "artist": "TALK"
-            },
-            {
-              "number": "3",
-              "title": "Black Summer",
-              "artist": "Red Hot Chilli Peppers"
-            },
-            {
-              "number": "4",
-              "title": "Bois Lie",
-              "artist": "Avril Lavigne ft. Machine Gun Kelly"
-            },
-            {
-              "number": "5",
-              "title": "Hayloft II",
-              "artist": "Mother Mother"
-            },
-            {
-              "number": "6",
-              "title": "sTraNgeRs",
-              "artist": "Bring Me The Horizon"
-            },
-            {
-              "number": "7",
-              "title": "All Come Crashing",
-              "artist": "Metric"
-            },
-            {
-              "number": "8",
-              "title": "Bones",
-              "artist": "Imagine Dragons"
-            },
-            {
-              "number": "9",
-              "title": "Grow Up Tomorrow",
-              "artist": "The Beaches"
-            },
-            {
-              "number": "10",
-              "title": "This is Way",
-              "artist": "Paramore"
-            }
-          ]
-        },
-        {
-          "R&B": [
-            {
-              "number": "1",
-              "title": "CUFF IT",
-              "artist": "Beyonce"
-            },
-            {
-              "number": "2",
-              "title": "If I Get Caught",
-              "artist": "dvsn"
-            },
-            {
-              "number": "3",
-              "title": "Out of Time",
-              "artist": "The Weeknd"
-            },
-            {
-              "number": "4",
-              "title": "Last Last",
-              "artist": "Burna Boy"
-            },
-            {
-              "number": "5",
-              "title": "KU LO SA - A COLORS SHOW",
-              "artist": "Oxlade"
-            },
-            {
-              "number": "6",
-              "title": "I Hate U",
-              "artist": "SZA"
-            },
-            {
-              "number": "7",
-              "title": "Sunshine",
-              "artist": "Steve Lacy ft. Foushee"
-            },
-            {
-              "number": "8",
-              "title": "WASTING TIME",
-              "artist": "Brent Faiyaz ft. Drake, The Neptunes"
-            },
-            {
-              "number": "9",
-              "title": "Lost Me",
-              "artist": "Giveon"
-            },
-            {
-              "number": "10",
-              "title": "Insecure",
-              "artist": "Roy Woods"
-            }
-          ]
-        }
-      ]
-    }
-  }
+	"_default": {
+		"1": {
+			"genre": "Country",
+			"songs": [
+				{
+					"number": "1",
+					"title": "Wasted on You",
+					"artist": "Morgan Wallen"
+				},
+				{
+					"number": "2",
+					"title": "You Proof",
+					"artist": "Morgan Wallen"
+				},
+				{
+					"number": "3",
+					"title": "'Til you Can't",
+					"artist": "Cody Johnson"
+				},
+				{
+					"number": "4",
+					"title": "Fancy Like",
+					"artist": "Walker Hayes"
+				},
+				{
+					"number": "5",
+					"title": "The Kind of Love We Make",
+					"artist": "Luke Combs"
+				},
+				{
+					"number": "6",
+					"title": "Something in The Orange",
+					"artist": "Zach Bryan"
+				},
+				{
+					"number": "7",
+					"title": "She Had Me at Heads Carolina",
+					"artist": "Cole Swindell"
+				},
+				{
+					"number": "8",
+					"title": "Fall in Love",
+					"artist": "Bailey Zimmerman"
+				},
+				{
+					"number": "9",
+					"title": "Buy Dirt",
+					"artist": "Jordan Davis ft. Luke Bryan"
+				},
+				{
+					"number": "10",
+					"title": "AA",
+					"artist": "Walker Hayes"
+				}
+			]
+		},
+		"2": {
+			"genre": "Dubstep",
+			"songs": [
+				{
+					"number": "1",
+					"title": "",
+					"artist": ""
+				},
+				{
+					"number": "2",
+					"title": "",
+					"artist": ""
+				},
+				{
+					"number": "3",
+					"title": "",
+					"artist": ""
+				},
+				{
+					"number": "4",
+					"title": "",
+					"artist": ""
+				},
+				{
+					"number": "5",
+					"title": "",
+					"artist": ""
+				},
+				{
+					"number": "6",
+					"title": "",
+					"artist": ""
+				},
+				{
+					"number": "7",
+					"title": "",
+					"artist": ""
+				},
+				{
+					"number": "8",
+					"title": "",
+					"artist": ""
+				},
+				{
+					"number": "9",
+					"title": "",
+					"artist": ""
+				},
+				{
+					"number": "10",
+					"title": "",
+					"artist": ""
+				}
+			]
+		},
+		"3": {
+			"genre": "Hip-Hop",
+			"songs": [
+				{
+					"number": "1",
+					"title": "F.N.F.",
+					"artist": "Hitkidd, GloRilla"
+				},
+				{
+					"number": "2",
+					"title": "WAIT FOR U",
+					"artist": "Future ft. Drake, Tems"
+				},
+				{
+					"number": "3",
+					"title": "pushin P",
+					"artist": "Gunna, Future ft. Young Thug"
+				},
+				{
+					"number": "4",
+					"title": "Jimmy Cooks",
+					"artist": "Drake ft. 21 Savage"
+				},
+				{
+					"number": "5",
+					"title": "HOTEL LOBBY",
+					"artist": "Quavo, Takeoff"
+				},
+				{
+					"number": "6",
+					"title": "Die Hard",
+					"artist": "Kendrick Lamar, Blxst, Amanda Reifer"
+				},
+				{
+					"number": "7",
+					"title": "Tomorrow 2",
+					"artist": "GloRilla, Cardi B"
+				},
+				{
+					"number": "8",
+					"title": "Just Wanna Rock",
+					"artist": "Lil Uzi Vert"
+				},
+				{
+					"number": "9",
+					"title": "What Happened to Virgil",
+					"artist": "Lil Durk, Gunna"
+				},
+				{
+					"number": "10",
+					"title": "PUFFIN ON ZOOTIES",
+					"artist": "Future"
+				}
+			]
+		},
+		"4": {
+			"genre": "Jazz",
+			"songs": [
+				{
+					"number": "1",
+					"title": "Coral Way",
+					"artist": "Alfredo Rodriguez"
+				},
+				{
+					"number": "2",
+					"title": "Between Two Worlds",
+					"artist": "Terell Stafford"
+				},
+				{
+					"number": "3",
+					"title": "Live at The Blue LLama",
+					"artist": "Allan Harris"
+				},
+				{
+					"number": "4",
+					"title": "Witness to History",
+					"artist": "Eddie Henderson"
+				},
+				{
+					"number": "5",
+					"title": "Earth Wind and Wonder vol 2",
+					"artist": "Don Braden"
+				},
+				{
+					"number": "6",
+					"title": "Bossa 65 Celebrating Carlos Lyra and Roberto Menescal",
+					"artist": "Antonio Adolfo"
+				},
+				{
+					"number": "7",
+					"title": "Plays Les McCann: Big Mo & Little Joe",
+					"artist": "Joe Alterman"
+				},
+				{
+					"number": "8",
+					"title": "Third Time's The Charm",
+					"artist": "Benny Benack III"
+				},
+				{
+					"number": "9",
+					"title": "My World",
+					"artist": "Diego Figueiredo"
+				},
+				{
+					"number": "10",
+					"title": "Desserts",
+					"artist": "Juan Carlos Quintero"
+				}
+			]
+		},
+		"5": {
+			"genre": "Pop",
+			"songs": [
+				{
+					"number": "1",
+					"title": "Unholy",
+					"artist": "Sam Smith ft. Kim Petras"
+				},
+				{
+					"number": "2",
+					"title": "Big Energy",
+					"artist": "Latto"
+				},
+				{
+					"number": "3",
+					"title": "No One Dies From Love",
+					"artist": "Tove Lo"
+				},
+				{
+					"number": "4",
+					"title": "As It Was",
+					"artist": "Harry Styles"
+				},
+				{
+					"number": "5",
+					"title": "Anti-Hero",
+					"artist": "Taylor Swift"
+				},
+				{
+					"number": "6",
+					"title": "Until I Found You",
+					"artist": "Stephen Sanchez"
+				},
+				{
+					"number": "7",
+					"title": "Maybe You're The Problem",
+					"artist": "Ava Max"
+				},
+				{
+					"number": "8",
+					"title": "Boyfriend",
+					"artist": "Dove Cameron"
+				},
+				{
+					"number": "9",
+					"title": "Bad Habit",
+					"artist": "Steve Lacy"
+				},
+				{
+					"number": "10",
+					"title": "I Like You",
+					"artist": "Post Malone, Doja Cat"
+				}
+			]
+		},
+		"6": {
+			"genre": "Rock",
+			"songs": [
+				{
+					"number": "1",
+					"title": "SUPERMODEL",
+					"artist": "Maneskin"
+				},
+				{
+					"number": "2",
+					"title": "Run Away to Mars",
+					"artist": "TALK"
+				},
+				{
+					"number": "3",
+					"title": "Black Summer",
+					"artist": "Red Hot Chilli Peppers"
+				},
+				{
+					"number": "4",
+					"title": "Bois Lie",
+					"artist": "Avril Lavigne ft. Machine Gun Kelly"
+				},
+				{
+					"number": "5",
+					"title": "Hayloft II",
+					"artist": "Mother Mother"
+				},
+				{
+					"number": "6",
+					"title": "sTraNgeRs",
+					"artist": "Bring Me The Horizon"
+				},
+				{
+					"number": "7",
+					"title": "All Come Crashing",
+					"artist": "Metric"
+				},
+				{
+					"number": "8",
+					"title": "Bones",
+					"artist": "Imagine Dragons"
+				},
+				{
+					"number": "9",
+					"title": "Grow Up Tomorrow",
+					"artist": "The Beaches"
+				},
+				{
+					"number": "10",
+					"title": "This is Way",
+					"artist": "Paramore"
+				}
+			]
+		},
+		"7": {
+			"genre": "R&B",
+			"songs": [
+				{
+					"number": "1",
+					"title": "CUFF IT",
+					"artist": "Beyonce"
+				},
+				{
+					"number": "2",
+					"title": "If I Get Caught",
+					"artist": "dvsn"
+				},
+				{
+					"number": "3",
+					"title": "Out of Time",
+					"artist": "The Weeknd"
+				},
+				{
+					"number": "4",
+					"title": "Last Last",
+					"artist": "Burna Boy"
+				},
+				{
+					"number": "5",
+					"title": "KU LO SA - A COLORS SHOW",
+					"artist": "Oxlade"
+				},
+				{
+					"number": "6",
+					"title": "I Hate U",
+					"artist": "SZA"
+				},
+				{
+					"number": "7",
+					"title": "Sunshine",
+					"artist": "Steve Lacy ft. Foushee"
+				},
+				{
+					"number": "8",
+					"title": "WASTING TIME",
+					"artist": "Brent Faiyaz ft. Drake, The Neptunes"
+				},
+				{
+					"number": "9",
+					"title": "Lost Me",
+					"artist": "Giveon"
+				},
+				{
+					"number": "10",
+					"title": "Insecure",
+					"artist": "Roy Woods"
+				}
+			]
+		}
+	}
 }

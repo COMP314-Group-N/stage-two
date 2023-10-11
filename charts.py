@@ -6,8 +6,6 @@ from tkinter import ttk
 from tinydb import TinyDB, Query
 
 db = TinyDB('charts.json')
-gquery = Query()
-squery = Query()
 
 class Charts(tk.Frame):
   def __init__(self, master):
@@ -43,8 +41,9 @@ class Charts(tk.Frame):
 
     def show_songs(event):
       genre = listgenres.get(listgenres.curselection())
-      print(genre)
-      print(db.search(gquery.genre == genre))
+      for g in db:
+        if (g.get('genre') == genre):
+          print(g.get('songs'))
 
 
     listgenres = Listbox(self, listvariable=var, selectmode=SINGLE, font=('Leelawadee', 11), height=7, width=13, cursor='hand2')
@@ -61,6 +60,7 @@ class Charts(tk.Frame):
     header.place(relx=.5, y=45, anchor=CENTER)
     lgenres.place(relx=.06, y=98, anchor=W)
     listgenres.place(relx=.055, y=176, anchor=W)
+    tsongs.place(relx=.35, y=210, anchor=W)
     lsongs.place(relx=.53, y=98, anchor=W)
     bgenre.place(relx=.055, y=340, anchor=W)
     blogout.place(relx=.815, y=340, anchor=W)
