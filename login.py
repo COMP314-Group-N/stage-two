@@ -12,6 +12,7 @@ query = Query()
 class Login(tk.Frame):
   def __init__(self, master):
     master.title('Login')
+    master.resizable(False, False)
 
     Frame.__init__(self, master)
     self.config(highlightthickness=1, highlightbackground='#7F8B96')

@@ -12,6 +12,7 @@ query = Query()
 class SignUp(tk.Frame):
   def __init__(self, master):
     master.title('Sign up')
+    master.resizable(False, False)
 
     Frame.__init__(self, master)
     self.config(highlightthickness=1, highlightbackground='#7F8B96')
