@@ -26,7 +26,7 @@ class Genre(tk.Frame):
     #FSM=================
     class GenreFSM:
       def __init__(self):
-        self.states = {
+        self.states = { #states for each genre and their respective bpm ranges
           'Blues': (60, 80),
           'Dubstep': (140, 160),
           'Hip-Hop': (80, 115),
@@ -36,7 +36,7 @@ class Genre(tk.Frame):
           'R&B': (70, 90),  
         }
             
-        self.transitions = {
+        self.transitions = { #transitions from each genre
           'Blues': ['Dubstep','Hip-Hop','Jazz/Country','Pop','Rock','R&B'],
           'Dubstep': ['Blues','Hip-Hop','Jazz/Country','Pop','Rock','R&B'],
           'Hip Hop': ['Blues','Dubstep','Jazz/Country','Pop','Rock','R&B'],
@@ -46,17 +46,17 @@ class Genre(tk.Frame):
           'R&B': ['Blues','Dubstep','Hip-Hop','Jazz/Country','Pop','Rock'],
         }
             
-        self.current_state = 'Unknown'
+        self.current_state = 'Unknown' #sets default state
           
       def determine_genre(self, audio_file):
-        y, sr = librosa.load(audio_file)
-        onset_env = librosa.onset.onset_strength(y=y, sr=sr)
-        tempo, _ = librosa.beat.beat_track(onset_envelope=onset_env, sr=sr)
+        y, sr = lib.load(audio_file) #gets audio time series and sampling rate
+        onset_env = lib.onset.onset_strength(y=y, sr=sr) #gets onset strength envelope
+        tempo, _ = lib.beat.beat_track(onset_envelope=onset_env, sr=sr) #gets tempo
           
         matching_genre = None  
-        for genre, (min_bpm, max_bpm) in self.states.items():
-          if min_bpm <= tempo <= max_bpm:
-            matching_genre = genre
+        for genre, (min_bpm, max_bpm) in self.states.items(): #loop through states
+          if min_bpm <= tempo <= max_bpm: #check if computed tempo is within a genres bpm range
+            matching_genre = genre #set genre if tempo falls within range
             break
             
         if matching_genre:
@@ -66,7 +66,7 @@ class Genre(tk.Frame):
           print(f"No matching genre found for tempo {tempo}.")
           return 'Unknown'
       
-      def transition_genre(self, genre):
+      def transition_genre(self, genre): #transition from current genre state to matching genre state
         if genre in self.transitions.get(self.current_state, []):
           self.current_state = genre
         else:
@@ -78,21 +78,21 @@ class Genre(tk.Frame):
 
     #Audio===============
     def process_audio(file):
-      audio_file = lib.load(file)
-      selText.set('\'' + file.rsplit('/', 1)[1] + '\'')
-      y, sr = audio_file
+      audio_file = lib.load(file) #loads audio file
+      selText.set('\'' + file.rsplit('/', 1)[1] + '\'') #splits file path and sets name of selected audio file
+      y, sr = audio_file #gets audio time series and sampling rate
       tempo, beat_frames = lib.beat.beat_track(y=y,sr=sr)
-      ebeats.delete(0, END)
-      beatText.set('{:.2f} BPM'.format(tempo))
-      ttempo.delete('1.0', END)
-      ttempo.insert(INSERT, beat_frames)
-      ttempo.config(state=DISABLED)  
-      song_genre_fsm = GenreFSM()
-      genre = song_genre_fsm.determine_genre(file)
-      current_genre = song_genre_fsm.get_current_genre()
+      ebeats.delete(0, END) #clears bpm entry field
+      beatText.set('{:.2f} BPM'.format(tempo)) #gets bpm and sets bpm entry
+      ttempo.delete('1.0', END) #clears tempo text area
+      ttempo.insert(INSERT, beat_frames) #sets tempo text
+      ttempo.config(state=DISABLED) #disables input for tempo text area
+      fsm = GenreFSM() #initializes an fsm with list of genres and transitions from each genre
+      genre = fsm.determine_genre(file) #pass selected audio file through fsm and return determined genre of song
+      current_genre = fsm.get_current_genre() #get current state of fsm
       
-      detText.set(genre)
-      curText.set(current_genre)
+      detText.set(genre) #sets determined genre entry
+      curText.set(current_genre) #sets current genre entry
     #====================
 
     #labels==============
@@ -123,9 +123,9 @@ class Genre(tk.Frame):
     blogout = ttk.Button(self, text='Log out', style='danger.Outline.TButton', cursor='hand2', command=lambda: master.switch_frame('Login'))
 
     def open_file():
-      ttempo.config(state=NORMAL)
-      types = (('Audio files', ['*.mp3', '*.wav']), ('All files', '*.*'))
-      file = fd.askopenfilename(title='Open audio file', filetypes=types)
+      ttempo.config(state=NORMAL) #enable input for tempo text area
+      types = (('Audio files', ['*.mp3', '*.wav']), ('All files', '*.*')) #sets file types shown in file dialog
+      file = fd.askopenfilename(title='Open audio file', filetypes=types) #open file dialog and select audio file
       if file != '':
         process_audio(file)
 

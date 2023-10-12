@@ -45,22 +45,30 @@ class SignUp(tk.Frame):
       master.switch_frame("Genre")
     #====================
 
-    #checks if user exists in login.json
+    #checks if user exists in login.json and validates login details (don't mind the nested if/else)
     def check_user():
+      user = eusername.get()
+      password = epassword.get()
       special_characters = "!@#$%^&*()-+?_=,<>/\"\'"
-      if eusername.get() != '':
-        if not any(char in special_characters for char in eusername.get()):
-          if not db.search(query.username == eusername.get()):
-            if epassword.get() == '':
-              error.config(text='Please enter a password.')
-              epassword.focus()
-            else:
-              if not any(char in special_characters for char in epassword.get()):
-                sign_up() 
+      if user != '':
+        if not any(char in special_characters for char in user):
+          if len(user) > 4:
+            if not db.search(query.username == user):
+              if password != '':
+                if len(password) > 7:
+                  if not any(char in special_characters for char in password):
+                    sign_up() 
+                  else:
+                    error.config(text='Your password may only contain alphanumeric characters')
+                else:
+                  error.config(text='Password must be atleast 8 characters')
               else:
-                error.config(text='Your password may only contain alphanumeric characters')
+                error.config(text='Please enter a password.')
+                epassword.focus()
+            else:
+              error.config(text='User already exists')
           else:
-            error.config(text='User already exists')
+            error.config(text='Username must be atleast 5 characters')
         else:
           error.config(text='Only alphanumeric characters allowed')
       else:
@@ -76,7 +84,7 @@ class SignUp(tk.Frame):
     #checkbox============
     checked = tk.IntVar()
 
-    def show_password():
+    def show_password(): #toggle password characters (*)
       if checked.get():
         epassword.config(show='')
       else:
@@ -86,14 +94,14 @@ class SignUp(tk.Frame):
     #====================
 
     #add elements to frame
-    lheader.place(relx=.5,y=40,anchor=CENTER)
-    lusername.place(x=30,y=73)
-    eusername.place(relx=.5,y=111,anchor=CENTER)
-    lpassword.place(x=30,y=143)
-    epassword.place(relx=.45,y=181, anchor=CENTER)
-    bsignup.place(relx=.35,y=235,anchor=CENTER)
-    checkbox.place(relx=.875,y=181,anchor=CENTER)
-    error.place(relx=.5,y=275,anchor=CENTER)
+    lheader.place(relx=.5,y=40, anchor=CENTER)
+    lusername.place(x=30, y=73)
+    eusername.place(relx=.5, y=111, anchor=CENTER)
+    lpassword.place(x=30, y=143)
+    epassword.place(relx=.45, y=181, anchor=CENTER)
+    bsignup.place(relx=.35, y=235, anchor=CENTER)
+    checkbox.place(relx=.875, y=181, anchor=CENTER)
+    error.place(relx=.5, y=275, anchor=CENTER)
     blogin.place(relx=.71, y=235, anchor=CENTER)
     #====================
 

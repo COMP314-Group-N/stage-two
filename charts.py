@@ -45,17 +45,15 @@ class Charts(tk.Frame):
     var = Variable(value=genres)
 
     def show_songs(event):
-      genre = listgenres.get(listgenres.curselection())
+      genre = listgenres.get(listgenres.curselection()) #gets current genre selection
 
-      tsongs.delete(*tsongs.get_children())
-      for g in db:
+      tsongs.delete(*tsongs.get_children()) #clears songs from tsongs treeview
+      for g in db: #gets list of songs in the selected genre from charts.json
         if (g.get('genre') == genre):
           songs = g.get('songs')
           for s in songs:
             tsongs.insert('', END, values=(s['number'], s['title'], s['artist']))
           break
-
-
 
     listgenres = Listbox(self, listvariable=var, selectmode=SINGLE, font=('Leelawadee', 11), height=7, width=13, cursor='hand2')
     listgenres.bind('<<ListboxSelect>>', show_songs)

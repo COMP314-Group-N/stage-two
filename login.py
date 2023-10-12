@@ -60,7 +60,7 @@ class Login(tk.Frame):
     #checkbox============
     checked = tk.IntVar()
 
-    def show_password():
+    def show_password(): #toggles password characters (*)
       if checked.get():
         epassword.config(show='')
       else:
@@ -70,14 +70,14 @@ class Login(tk.Frame):
     #====================
 
     #add elements to frame
-    lheader.place(relx=.5, y=40,anchor=CENTER)
+    lheader.place(relx=.5, y=40, anchor=CENTER)
     lusername.place(x=30, y=73)
     eusername.place(relx=.5, y=111, anchor=CENTER)
     lpassword.place(x=30, y=143)
     epassword.place(relx=.45, y=181, anchor=CENTER)
     blogin.place(relx=.325, y=235, anchor=CENTER)
     checkbox.place(relx=.875, y=181, anchor=CENTER)
-    error.place(relx=.5, y=275,anchor=CENTER)
+    error.place(relx=.5, y=275, anchor=CENTER)
     bsignup.place(relx=.625, y=235, anchor=CENTER)
     #====================
 

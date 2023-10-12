@@ -1,20 +1,9 @@
 {
-  "_default": {
-    "1": {
-      "username": "user00",
-      "password": "pass00"
-    },
-    "2": {
-      "username": "user01",
-      "password": "pass01"
-    },
-    "3": {
-      "username": "user02",
-      "password": "pass02"
-    },
-    "4": {
-      "username": "user03",
-      "password": "pass03"
-    }
-  }
+	"_default": {
+		"1": { "username": "user00", "password": "pass00" },
+		"2": { "username": "user01", "password": "pass01" },
+		"3": { "username": "user02", "password": "pass02" },
+		"4": { "username": "user03", "password": "pass03" },
+		"5": { "username": "user04", "password": "pass0004" }
+	}
 }
