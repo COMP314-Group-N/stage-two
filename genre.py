@@ -9,7 +9,7 @@ import librosa.display
 
 class Genre(tk.Frame):
   def __init__(self, master):
-    master.title('Login')
+    master.title('Classification')
     master.resizable(False, False)
     
     Frame.__init__(self, master)
@@ -131,7 +131,7 @@ class Genre(tk.Frame):
 
     bfile = ttk.Button(self, text='Open audio file', command=open_file, style='primary.Outline.TButton', cursor='hand2')
 
-    bcharts = ttk.Button(self, text='View charts', style='primary.Outline.TButton', cursor='hand2', command=lambda: master.switch_frame('Charts'))
+    bcharts = ttk.Button(self, text='View charts ->', style='primary.Outline.TButton', cursor='hand2', command=lambda: master.switch_frame('Charts'))
     #====================
 
     #add elements to frame
@@ -148,7 +148,7 @@ class Genre(tk.Frame):
     egenre.place(relx=.525, y=288, anchor=W)
     bfile.place(relx=.055, y=340, anchor=W)
     blogout.place(relx=.815, y=340, anchor=W)
-    bcharts.place(relx=.625, y=340, anchor=W)
+    bcharts.place(relx=.585, y=340, anchor=W)
     #====================
 
 if __name__ == "__main__":

@@ -18,9 +18,9 @@ class Charts(tk.Frame):
 
     w = master.winfo_screenwidth()
     h = master.winfo_screenheight()
-    x = (w/2) - (665/2)
-    y = (h/2) - (390/2)
-    master.geometry('%dx%d+%d+%d' % (665, 390, x, y))
+    x = (w/2) - (700/2)
+    y = (h/2) - (380/2)
+    master.geometry('%dx%d+%d+%d' % (700, 380, x, y))
     self.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
     #labels==============
@@ -36,8 +36,8 @@ class Charts(tk.Frame):
     tsongs.heading('title', text='Title')
     tsongs.heading('artist', text='Artist')
     tsongs.column('number', width=40, anchor=W)
-    tsongs.column('title', width=225, anchor=W)
-    tsongs.column('artist', width=225, anchor=W)
+    tsongs.column('title', width=230, anchor=W)
+    tsongs.column('artist', width=210, anchor=W)
     #====================
 
     #listbox=============
@@ -55,24 +55,24 @@ class Charts(tk.Frame):
             tsongs.insert('', END, values=(s['number'], s['title'], s['artist']))
           break
 
-    listgenres = Listbox(self, listvariable=var, selectmode=SINGLE, font=('Leelawadee', 11), height=7, width=13, cursor='hand2')
+    listgenres = Listbox(self, listvariable=var, selectmode=SINGLE, font=('Leelawadee', 11), height=10, width=13, cursor='hand2')
     listgenres.bind('<<ListboxSelect>>', show_songs)
     #====================
 
     #buttons=============
     blogout = ttk.Button(self, text='Log out', style='danger.Outline.TButton', cursor='hand2', command=lambda: master.switch_frame('Login'))
 
-    bgenre = ttk.Button(self, text='Genre classification', style='primary.Outline.TButton', cursor='hand2', command=lambda: master.switch_frame('Genre'))
+    bgenre = ttk.Button(self, text='<- Genre classification', style='primary.Outline.TButton', cursor='hand2', command=lambda: master.switch_frame('Genre'))
     #====================
 
     #add elements to frame
     header.place(relx=.5, y=45, anchor=CENTER)
-    lgenres.place(relx=.06, y=98, anchor=W)
-    listgenres.place(relx=.055, y=176, anchor=W)
-    lsongs.place(relx=.275, y=98, anchor=W)
-    tsongs.place(relx=.27, y=201.5, anchor=W)
-    bgenre.place(relx=.055, y=340, anchor=W)
-    blogout.place(relx=.815, y=340, anchor=W)
+    lgenres.place(relx=.0525, y=98, anchor=W)
+    listgenres.place(relx=.05, y=201.5, anchor=W)
+    lsongs.place(relx=.5, y=98, anchor=W)
+    tsongs.place(relx=.245, y=201.5, anchor=W)
+    bgenre.place(relx=.05, y=330, anchor=W)
+    blogout.place(relx=.855, y=330, anchor=W)
     #====================
 
 if __name__ == "__main__":
