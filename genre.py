@@ -28,7 +28,9 @@ class Genre(tk.Frame):
       def __init__(self):
         self.states = { #states for each genre and their respective bpm ranges
           'Blues': (60, 80),
+          'Classical': (40, 60),
           'Dubstep': (140, 160),
+          'Funk': (120, 160),
           'Hip-Hop': (80, 115),
           'Jazz/Country': (90, 120),
           'Pop': (90, 130),
@@ -37,13 +39,15 @@ class Genre(tk.Frame):
         }
             
         self.transitions = { #transitions from each genre
-          'Blues': ['Dubstep','Hip-Hop','Jazz/Country','Pop','Rock','R&B'],
-          'Dubstep': ['Blues','Hip-Hop','Jazz/Country','Pop','Rock','R&B'],
-          'Hip Hop': ['Blues','Dubstep','Jazz/Country','Pop','Rock','R&B'],
-          'Jazz/Country': ['Blues','Dubstep','Hip-Hop','Pop','Rock','R&B'],
-          'Pop': ['Blues','Dubstep','Hip-Hop','Jazz/Country','Rock','R&B'],
-          'Rock': ['Blues','Dubstep','Hip-Hop','Jazz/Country','Pop','R&B'],
-          'R&B': ['Blues','Dubstep','Hip-Hop','Jazz/Country','Pop','Rock'],
+          'Blues': ['Classical','Dubstep','Funk','Hip-Hop','Jazz/Country','Pop','Rock','R&B'],
+          'Classical': ['Blues','Dubstep','Funk','Hip-Hop','Jazz/Country','Pop','Rock','R&B'],
+          'Dubstep': ['Blues','Classical','Funk','Hip-Hop','Jazz/Country','Pop','Rock','R&B'],
+          'Funk': ['Blues','Classical','Dubstep','Hip-Hop','Jazz/Country','Pop','Rock','R&B'],
+          'Hip Hop': ['Blues','Classical','Dubstep','Funk','Jazz/Country','Pop','Rock','R&B'],
+          'Jazz/Country': ['Blues','Classical','Dubstep','Funk','Hip-Hop','Pop','Rock','R&B'],
+          'Pop': ['Blues','Classical','Dubstep','Funk','Hip-Hop','Jazz/Country','Rock','R&B'],
+          'Rock': ['Blues','Classical','Dubstep','Funk','Hip-Hop','Jazz/Country','Pop','R&B'],
+          'R&B': ['Blues','Classical','Dubstep','Funk','Hip-Hop','Jazz/Country','Pop','Rock'],
         }
             
         self.current_state = 'Unknown' #sets default state

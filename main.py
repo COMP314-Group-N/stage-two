@@ -16,7 +16,7 @@ class MusicApp(tk.Tk):
   def __init__(self):
     tk.Tk.__init__(self)
     self._frame = None
-    self.switch_frame("Login")
+    self.switch_frame("Charts")
 
   def switch_frame(self, page_name):
     cls = pages[page_name]
