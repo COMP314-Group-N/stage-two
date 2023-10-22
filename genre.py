@@ -30,7 +30,7 @@ class Genre(tk.Frame):
           'Blues': (60, 80),
           'Classical': (40, 60),
           'Dubstep': (140, 160),
-          'Funk': (120, 160),
+          'Funk': (130, 160),
           'Hip-Hop': (80, 115),
           'Jazz/Country': (90, 120),
           'Pop': (90, 130),
